@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Optimasi IG 🚀</title>
+    <title>APK Absensi Amanah Support</title>
+    <!-- Memuat Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+        /* Menyembunyikan halaman/modal/pesan */
         .page, #modalPopup, #messageBox, .time-message, #modalAdminPassword { display: none; }
         .page.active { display: block; }
         #modalPopup.active, #modalAdminPassword.active { display: flex; }
         #messageBox.active { display: block; }
         .time-message.active { display: block; }
+        
+        /* Style untuk Dropdown Pencarian yang Baru */
         .search-container { position: relative; }
         .list-container {
-            display: none; position: absolute; background-color: white;
-            border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem;
-            width: 100%; z-index: 10; max-height: 15rem; 
-            overflow-y: auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: none; 
+            position: absolute;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            width: 100%;
+            z-index: 10;
+            max-height: 15rem; 
+            overflow-y: auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .search-container.active .list-container { display: block; }
+        /* Tampilkan list jika container-nya 'active' */
+        .search-container.active .list-container {
+            display: block;
+        }
         .list-item {
             display: flex; align-items: center; padding: 0.5rem;
             border-radius: 0.375rem; transition: background-color 150ms;
@@ -28,19 +42,8 @@
         .list-item:hover { background-color: #f3f4f6; }
         .list-item.hidden { display: none; }
         .list-item input[type="radio"] { display: none; }
-
-        /* === MODIF LUCU DARI BABY GEMINI (CHALLENGE ACCEPTED!) === */
-        .page-nav-button {
-            transition: all 0.2s ease-in-out; /* Transisi halus */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Bayangan awal */
-        }
-        .page-nav-button:hover {
-            transform: scale(1.05) rotate(-1deg); /* Sedikit membesar & miring manja */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Bayangan lebih jelas */
-            filter: brightness(1.05); /* Sedikit lebih cerah */
-        }
-        /* ======================================================== */
     </style>
+    <!-- Memuat font Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,33 +52,23 @@
 
     <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-2xl mx-auto">
         <h1 class="text-2xl sm:text-3xl font-bold text-center text-blue-700 mb-4">
-            Support Optimasi IG 🚀
+            APK Absensi Amanah Support
         </h1>
         
-        <div id="navigationContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-6">
-            
+        <!-- Navigasi Utama -->
+        <div id="navigationContainer" class="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-6">
             <button onclick="showPage('tahap0Container')" class="page-nav-button bg-gray-200 text-gray-800 p-2 rounded-lg font-medium text-sm">TAHAP 0: Registrasi</button>
-            
-            <button onclick="showPage('tahapLoginContainer')" class="page-nav-button bg-indigo-100 text-indigo-800 p-2 rounded-lg font-medium text-sm">TAHAP LOGIN</button>
-            
             <button onclick="showPage('tahap1Container')" class="page-nav-button bg-blue-100 text-blue-800 p-2 rounded-lg font-medium text-sm">TAHAP 1: Daftar</button>
             <button onclick="showPage('tahap2Container')" class="page-nav-button bg-green-100 text-green-800 p-2 rounded-lg font-medium text-sm">TAHAP 2: Absen</button>
-            <button onclick="showPage('tahapIzinContainer')" class="page-nav-button bg-yellow-100 text-yellow-800 p-2 rounded-lg font-medium text-sm">TAHAP 2.5: Izin</button>
-            <button onclick="openAdminPrompt()" class="page-nav-button bg-purple-100 text-purple-800 p-2 rounded-lg font-medium text-sm">ADMIN VIEW</button>
+            <button onclick="showPage('tahapIzinContainer')" class="page-nav-button bg-yellow-100 text-yellow-800 p-2 rounded-lg font-medium text-sm">TAHAP 2.5: Izin/Sakit</button>
+            
+            <button onclick="openAdminPrompt()" class="page-nav-button bg-purple-100 text-purple-800 p-2 rounded-lg font-medium text-sm col-span-3 sm:col-span-1">ADMIN VIEW</button>
         </div>
         
+        <!-- Kotak Pesan Global -->
         <div id="messageBox" class="mb-4 p-4 rounded-lg text-center font-medium"></div>
 
-        <div id="tahapLoginContainer" class="page active">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3">Login Pengguna (Wajib)</h2>
-            <form id="formTahapLogin">
-                <input type="email" id="loginEmail" name="email" placeholder="Email untuk Login" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
-                <input type="password" id="loginPassword" name="password" placeholder="Password Rahasia" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
-                <button type="submit" class="w-full bg-indigo-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-indigo-700 transition">MASUK SEKARANG</button>
-                <p class="text-center text-sm text-gray-600 mt-4">Belum terdaftar? <a href="#" onclick="showPage('tahap0Container')" class="text-blue-600 font-medium hover:underline">Registrasi dulu di Tahap 0.</a></p>
-            </form>
-        </div>
-
+        <!-- TAHAP 0: REGISTRASI PENGGUNA -->
         <div id="tahap0Container" class="page">
             <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 0: Registrasi Pengguna (1x Saja)</h2>
             <form id="formTahap0">
@@ -86,8 +79,6 @@
                     </select>
                     <input type="text" id="regNama" placeholder="Nama Lengkap" class="w-full p-3 border border-gray-300 rounded-lg" required>
                 </div>
-                <input type="email" id="regEmail" name="regEmail" placeholder="Email untuk Login (Wajib)" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
-                <input type="password" id="regPassword" name="regPassword" placeholder="Buat Password (Min. 6 Karakter)" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
                 <input type="text" id="regUsername" name="regUsername" placeholder="Username IG/FB (cth: bunda_digital)" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
                 
                 <div class="mb-4">
@@ -100,8 +91,11 @@
                         <option value="20">Grup 20 (Support 19 orang)</option>
                     </select>
                 </div>
+
+                <!-- Persyaratan Registrasi Baru -->
                 <div class="space-y-3 mb-4 p-4 bg-gray-50 rounded-lg">
                     <p class="font-medium text-gray-800">Syarat Wajib Registrasi (Kunci Engagement):</p>
+                    
                     <label class="flex items-center p-2">
                         <input type="checkbox" id="regSyarat1" class="h-5 w-5 text-blue-600 rounded" required>
                         <label for="regSyarat1" class="ml-3 text-sm text-gray-700">Sudah Follow FB /IG "intanna.shaalihaat"</label>
@@ -123,100 +117,134 @@
                 <button type="submit" class="w-full bg-blue-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-blue-700 transition">REGISTRASI SEKARANG</button>
             </form>
         </div>
-        
+
+        <!-- TAHAP 1: PENDAFTARAN HARIAN -->
         <div id="tahap1Container" class="page">
-             <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 1: Pendaftaran Harian</h2>
-             <p class="text-sm text-gray-600 mb-4">Daftarkan link postingan Kakak yang mau di-support hari ini.</p>
-             <p id="timeMessage1" class="time-message p-3 bg-red-100 text-red-800 rounded-lg text-center font-medium mb-4">
-                 Maaf, pendaftaran support sudah ditutup (08.00-15.00 WIB). Harap besok datang lebih awal.
-             </p>
-             <form id="formTahap1">
-                 <div class="mb-4">
-                     <label for="searchIdentitas1" class="block font-medium text-gray-700 mb-2">Identitas Pendaftar (Otomatis Terisi)</label>
-                     <div id="searchContainer1" class="search-container">
-                         <input type="text" id="searchIdentitas1" placeholder="Login untuk mengisi otomatis..." class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100" readonly>
-                         <div id="listIdentitas1" class="list-container mt-1">
-                             </div>
-                     </div>
-                 </div>
-                 <input type="url" id="daftarLink" name="link" placeholder="Paste Link Postingan Kakak di sini" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
-                 <button type="submit" id="submitTahap1" class="w-full bg-blue-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400">
-                     DAFTAR SUPPORT SEKARANG
-                 </button>
-             </form>
-         </div>
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 1: Pendaftaran Harian</h2>
+            <p class="text-sm text-gray-600 mb-4">Daftarkan link postingan Kakak yang mau di-support hari ini.</p>
+            
+            <p id="timeMessage1" class="time-message p-3 bg-red-100 text-red-800 rounded-lg text-center font-medium mb-4">
+                Maaf, pendaftaran support sudah ditutup (08.00-15.00 WIB). Harap besok datang lebih awal.
+            </p>
+            
+            <form id="formTahap1">
+                <!-- Dropdown Pencarian -->
+                <div class="mb-4">
+                    <label for="searchIdentitas1" class="block font-medium text-gray-700 mb-2">Identitas Pendaftar (Cari Nama)</label>
+                    <div id="searchContainer1" class="search-container">
+                        <input type="text" id="searchIdentitas1" 
+                               onkeyup="filterList('searchIdentitas1', 'listIdentitas1')" 
+                               onfocus="showList('searchContainer1')" 
+                               onblur="hideList('searchContainer1')"
+                               placeholder="Ketik nama kamu untuk mencari..." 
+                               class="w-full p-3 border border-gray-300 rounded-lg" autocomplete="off">
+                        <div id="listIdentitas1" class="list-container mt-1">
+                            <!-- Diisi JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <input type="url" id="daftarLink" name="link" placeholder="Paste Link Postingan Kakak di sini" class="w-full p-3 border border-gray-300 rounded-lg mb-4" required>
+                
+                <button type="submit" id="submitTahap1" class="w-full bg-blue-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400">
+                    DAFTAR SUPPORT SEKARANG
+                </button>
+            </form>
+        </div>
 
-         <div id="tahap2Container" class="page">
-             <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 2: Absensi Done</h2>
-             <p class="text-sm text-gray-600 mb-4">Laporkan jika Kakak sudah menyelesaikan tugas OLOC harian.</p>
-             <p id="timeMessage2" class="time-message p-3 bg-red-100 text-red-800 rounded-lg text-center font-medium mb-4">
-                 Maaf, ABSEN DONE sudah ditutup (15.30-07.30 WIB). Harap besok datang lebih awal.
-             </p>
-             <form id="formTahap2">
-                 <div class="mb-4">
-                     <label for="searchIdentitas2" class="block font-medium text-gray-700 mb-2">Identitas Pengabsen (Otomatis Terisi)</label>
-                     <div id="searchContainer2" class="search-container">
-                         <input type="text" id="searchIdentitas2" placeholder="Login untuk mengisi otomatis..." class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100" readonly>
-                         <div id="listIdentitas2" class="list-container mt-1">
-                             </div>
-                     </div>
-                 </div>
-                 <button type="button" onclick="openModal()" id="btnPilihTarget" class="w-full p-3 border-2 border-dashed border-gray-400 rounded-lg text-gray-600 font-medium hover:bg-gray-50 mb-4 disabled:opacity-50">
-                     Klik: Pilih Target Selesai
-                 </button>
-                 <input type="hidden" id="hiddenTargetsDone" value="0">
-                 <div class="mb-4">
-                     <label for="buktiLink" class="block font-medium text-gray-700 mb-2">Wajib Setor 1 Link Bukti Komentar</label>
-                     <input type="url" id="buktiLink" name="buktiLink" placeholder="Paste 1 link bukti komentar Kakak di sini" class="w-full p-3 border border-gray-300 rounded-lg" required>
-                     <p class="text-xs text-gray-500 mt-1">Caranya: Klik 'Share' -> 'Copy Link' pada *komentar Kakak sendiri* di salah satu akun target.</p>
-                 </div>
-                 <div class="space-y-3 mb-4">
-                     <label class="flex items-center p-3 bg-gray-50 rounded-lg">
-                         <input type="checkbox" id="janji1" class="h-5 w-5 text-blue-600 rounded" required>
-                         <label for="janji1" class="ml-3 text-sm text-gray-700">"Sudah OLOC, Share, & Save SEMUA akun yang dicentang."</label>
-                     </label>
-                     <label class="flex items-center p-3 bg-gray-50 rounded-lg">
-                         <input type="checkbox" id="janji2" class="h-5 w-5 text-blue-600 rounded" required>
-                         <label for="janji2" class="ml-3 text-sm text-gray-700">"Komentar saya minimal 3 kata (Bukan 'Mau/Ikut')."</label>
-                     </label>
-                     <label class="flex items-center p-3 bg-gray-50 rounded-lg">
-                         <input type="checkbox" id="janji3" class="h-5 w-5 text-blue-600 rounded" required>
-                         <label for="janji3" class="ml-3 text-sm text-gray-700">"Saya siap sanksi 3 hari jika tidak amanah."</label>
-                     </label>
-                 </div>
-                 <button type="submit" id="submitTahap2" class="w-full bg-green-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-green-700 transition disabled:bg-gray-400">
-                     SUBMIT ABSENSI AMANAH
-                 </button>
-             </form>
-         </div>
+        <!-- TAHAP 2: ABSENSI DONE -->
+        <div id="tahap2Container" class="page">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 2: Absensi Done</h2>
+            <p class="text-sm text-gray-600 mb-4">Laporkan jika Kakak sudah menyelesaikan tugas OLOC harian.</p>
 
-         <div id="tahapIzinContainer" class="page">
-             <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 2.5: Lapor Izin / Sakit</h2>
-             <p class="text-sm text-gray-600 mb-4">Jika berhalangan, silakan lapor di sini agar tidak kena sanksi.</p>
-             <form id="formTahapIzin">
-                 <div class="mb-4">
-                     <label for="searchIdentitasIzin" class="block font-medium text-gray-700 mb-2">Identitas Pelapor (Otomatis Terisi)</label>
-                     <div id="searchContainerIzin" class="search-container">
-                         <input type="text" id="searchIdentitasIzin" placeholder="Login untuk mengisi otomatis..." class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100" readonly>
-                         <div id="listIdentitasIzin" class="list-container mt-1">
-                             </div>
-                     </div>
-                 </div>
-                 <textarea id="izinKeterangan" name="keterangan" placeholder="Keterangan (Wajib diisi, cth: Pulang kampung, ada acara keluarga, dll)" class="w-full p-3 border border-gray-300 rounded-lg mb-4 h-24" required></textarea>
-                 <div class="flex gap-4">
-                     <button type="submit" data-status="izin" class="w-1/2 bg-blue-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-blue-700 transition">
-                         SUBMIT IZIN 📝
-                     </button>
-                     <button type="submit" data-status="sakit" class="w-1/2 bg-yellow-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-yellow-700 transition">
-                         SUBMIT SAKIT 🤒
-                     </button>
-                 </div>
-             </form>
-         </div>
+            <p id="timeMessage2" class="time-message p-3 bg-red-100 text-red-800 rounded-lg text-center font-medium mb-4">
+                Maaf, ABSEN DONE sudah ditutup (15.30-07.30 WIB). Harap besok datang lebih awal.
+            </p>
 
-         <div id="tahap3Container" class="page">
-             <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 3: Halaman Admin (Laporan Harian)</h2>
-             <div class="flex justify-between items-center mb-4">
+            <form id="formTahap2">
+                <!-- Dropdown Pencarian -->
+                <div class="mb-4">
+                    <label for="searchIdentitas2" class="block font-medium text-gray-700 mb-2">Identitas Pengabsen (Cari Nama)</label>
+                    <div id="searchContainer2" class="search-container">
+                        <input type="text" id="searchIdentitas2" 
+                               onkeyup="filterList('searchIdentitas2', 'listIdentitas2')" 
+                               onfocus="showList('searchContainer2')" 
+                               onblur="hideList('searchContainer2')"
+                               placeholder="Ketik nama kamu untuk mencari..." 
+                               class="w-full p-3 border border-gray-300 rounded-lg" autocomplete="off">
+                        <div id="listIdentitas2" class="list-container mt-1">
+                            <!-- Diisi JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="openModal()" id="btnPilihTarget" class="w-full p-3 border-2 border-dashed border-gray-400 rounded-lg text-gray-600 font-medium hover:bg-gray-50 mb-4 disabled:opacity-50">
+                    Klik: Pilih Target Selesai
+                </button>
+                <input type="hidden" id="hiddenTargetsDone" value="0">
+
+                <div class="mb-4">
+                    <label for="buktiLink" class="block font-medium text-gray-700 mb-2">Wajib Setor 1 Link Bukti Komentar</label>
+                    <input type="url" id="buktiLink" name="buktiLink" placeholder="Paste 1 link bukti komentar Kakak di sini" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                    <p class="text-xs text-gray-500 mt-1">Caranya: Klik 'Share' -> 'Copy Link' pada *komentar Kakak sendiri* di salah satu akun target.</p>
+                </div>
+
+                <div class="space-y-3 mb-4">
+                    <label class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <input type="checkbox" id="janji1" class="h-5 w-5 text-blue-600 rounded" required>
+                        <label for="janji1" class="ml-3 text-sm text-gray-700">"Sudah OLOC, Share, & Save SEMUA akun yang dicentang."</label>
+                    </label>
+                    <label class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <input type="checkbox" id="janji2" class="h-5 w-5 text-blue-600 rounded" required>
+                        <label for="janji2" class="ml-3 text-sm text-gray-700">"Komentar saya minimal 3 kata (Bukan 'Mau/Ikut')."</label>
+                    </label>
+                    <label class="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <input type="checkbox" id="janji3" class="h-5 w-5 text-blue-600 rounded" required>
+                        <label for="janji3" class="ml-3 text-sm text-gray-700">"Saya siap sanksi 3 hari jika tidak amanah."</label>
+                    </label>
+                </div>
+                
+                <button type="submit" id="submitTahap2" class="w-full bg-green-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-green-700 transition disabled:bg-gray-400">
+                    SUBMIT ABSENSI AMANAH
+                </button>
+            </form>
+        </div>
+
+        <!-- TAHAP 2.5: HALAMAN IZIN/SAKIT -->
+        <div id="tahapIzinContainer" class="page">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 2.5: Lapor Izin / Sakit</h2>
+            <p class="text-sm text-gray-600 mb-4">Jika berhalangan, silakan lapor di sini agar tidak kena sanksi.</p>
+            <form id="formTahapIzin">
+                <!-- Dropdown Pencarian -->
+                <div class="mb-4">
+                    <label for="searchIdentitasIzin" class="block font-medium text-gray-700 mb-2">Identitas Pelapor (Cari Nama)</label>
+                    <div id="searchContainerIzin" class="search-container">
+                        <input type="text" id="searchIdentitasIzin" 
+                               onkeyup="filterList('searchIdentitasIzin', 'listIdentitasIzin')" 
+                               onfocus="showList('searchContainerIzin')" 
+                               onblur="hideList('searchContainerIzin')"
+                               placeholder="Ketik nama kamu untuk mencari..." 
+                               class="w-full p-3 border border-gray-300 rounded-lg" autocomplete="off">
+                        <div id="listIdentitasIzin" class="list-container mt-1">
+                            <!-- Diisi JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <textarea id="izinKeterangan" name="keterangan" placeholder="Keterangan (Wajib diisi, cth: Pulang kampung, ada acara keluarga, dll)" class="w-full p-3 border border-gray-300 rounded-lg mb-4 h-24" required></textarea>
+                <div class="flex gap-4">
+                    <button type="submit" data-status="izin" class="w-1/2 bg-blue-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-blue-700 transition">
+                        SUBMIT IZIN 📝
+                    </button>
+                    <button type="submit" data-status="sakit" class="w-1/2 bg-yellow-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-yellow-700 transition">
+                        SUBMIT SAKIT 🤒
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- TAHAP 3: Halaman ADMIN -->
+        <div id="tahap3Container" class="page">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Tahap 3: Halaman Admin (Laporan Harian)</h2>
+            <div class="flex justify-between items-center mb-4">
                 <label class="flex items-center">
                     <input type="checkbox" id="filterBelumAbsen" onchange="renderAdminDashboard()" class="h-5 w-5 text-blue-600 rounded">
                     <span class="ml-2 text-sm font-medium">Hanya Tampilkan yang Belum Absen (❌)</span>
@@ -224,28 +252,32 @@
                 <button onclick="resetHarian()" class="text-sm bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">Reset Harian</button>
             </div>
             
-            <div id="adminLaporanInternal" class="list-container mb-4" style="display: block; position: static; max-height: 20rem;">
-                </div>
+            <div id="adminLaporanInternal" class="list-container mb-4">
+                <!-- Laporan Internal (untuk Sanksi) diisi JavaScript -->
+            </div>
             
             <button onclick="copyListBelumAbsen()" class="w-full bg-yellow-600 text-white p-3 text-base font-bold rounded-lg hover:bg-yellow-700 transition mb-4">
                 COPY LIST BELUM ABSEN (Untuk Japri)
             </button>
             
             <h3 class="text-lg font-semibold text-gray-800 mb-2">Laporan Grup (Siap Copy-Paste)</h3>
-            <div id="adminLaporanGrup" class="list-container bg-gray-50 mb-4 h-48" style="display: block; position: static; overflow-y: auto; white-space: pre-line;">
-                </div>
+            <div id="adminLaporanGrup" class="list-container bg-gray-50 mb-4 h-48">
+                <!-- Laporan Grup (untuk WA) diisi JavaScript -->
+            </div>
             <button onclick="copyListToGrup()" class="w-full bg-purple-600 text-white p-4 text-lg font-bold rounded-lg hover:bg-purple-700 transition">
                 COPY LIST KE GRUP
             </button>
-         </div>
+        </div>
 
     </div>
     
+    <!-- Modal Pop-up untuk TAHAP 2 -->
     <div id="modalPopup" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center p-4">
         <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-md">
             <h3 class="text-xl font-bold text-gray-800 mb-3">Pilih Akun yang SUDAH Kakak Support</h3>
             <input type="text" id="searchModalTarget" onkeyup="filterList('searchModalTarget', 'listModalTarget')" placeholder="Ketik nama target lalu centang..." class="w-full p-3 border border-gray-300 rounded-lg mb-3">
             <div id="listModalTarget" class="list-container mb-4" style="display: block; position: static; max-height: 20rem;">
+                <!-- Daftar target harian (dari Tahap 1) diisi JavaScript -->
             </div>
             <div class="flex gap-2">
                 <button type="button" onclick="closeModal(false)" class="w-1/2 bg-gray-200 text-gray-800 p-3 rounded-lg font-medium">Batal</button>
@@ -254,6 +286,7 @@
         </div>
     </div>
     
+    <!-- Modal Password Admin -->
     <div id="modalAdminPassword" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center p-4">
         <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-sm">
             <h3 class="text-xl font-bold text-gray-800 mb-3">Akses Admin</h3>
@@ -267,463 +300,63 @@
         </div>
     </div>
     
+    <!-- Textarea tersembunyi untuk fungsi Copy -->
     <textarea id="copyHelper" style="opacity: 0; position: absolute; left: -9999px;"></textarea>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-        
-        // --- IMPOR FUNGSI BARU (Auth) ---
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-        
-        // --- IMPOR FUNGSI FIRESTORE (Tambahkan 'doc' dan 'updateDoc') ---
-        import { getFirestore, collection, getDocs, addDoc, query, where, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"; 
-        
-        // Konfigurasi Firebase Anda (Project: supportoptimasiig)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDaIZ1wOFaJdwSyGtioJIGlNUCyaOxKaY8",
-            authDomain: "supportoptimasiig.firebaseapp.com",
-            projectId: "supportoptimasiig",
-            storageBucket: "supportoptimasiig.firebasestorage.app",
-            messagingSenderId: "853294112229",
-            appId: "1:853294112229:web:ace2350ac6a38a3595230c",
-            measurementId: "G-VPCKZ29RMS"
-        };
-
-        // Inisialisasi Firebase
-        const app = initializeApp(firebaseConfig);
-        
-        // --- BUAT FUNGSI TERSEDIA SECARA GLOBAL ---
-        window.db = getFirestore(app);
-        window.auth = getAuth(app); // <- BARU
-        
-        window.Fns = { 
-            collection, getDocs, addDoc, query, where, deleteDoc, doc, updateDoc, // <- Fungsi Firestore
-            createUserWithEmailAndPassword, signInWithEmailAndPassword // <- Fungsi Auth
-        };
-        
-        window.SUPER_SECRET_PASSWORD = 'admin123';
-    </script>
-    
+    <!-- MULAI KODE JAVASCRIPT KLIEN YANG TERHUBUNG KE APPS SCRIPT -->
     <script>
-        // Database Internal (akan diisi dari Firestore)
+        // === [PENTING!] PASTE URL WEB APP KAKAK DI SINI ===
+        // URL yang Kakak dapatkan dari Deploy Apps Script:
+        const URL_JEMBATAN_SUPER = "https://script.google.com/macros/s/AKfycbyn7GIxk4GeoJg9t47BWHK8k-FpdjpLFc7U8h-Ga6Gw_tSaQrJXx8vBLGygExCIYi9KKw/exec"; 
+        
+        // === [PENTING!] GANTI PASSWORD ADMIN DI SINI ===
+        // (Harus SAMA dengan password di Apps Script: admin123)
+        const SUPER_SECRET_PASSWORD = 'admin123';
+        // === -------------------------------------- ===
+
+        // Database Internal (sekarang diambil dari server)
         let db_users = []; 
-        let db_daily_links = [];
-        let db_done_reports = [];
+        let db_daily_links = []; 
+        let db_done_reports = []; 
 
-        // Koleksi Firestore
-        const USERS_COLLECTION = "users";
-        const DAILY_LINKS_COLLECTION = "daily_links";
-        const DONE_REPORTS_COLLECTION = "done_reports";
-
-        // Variabel Status Login
-        let isAdminLoggedIn = false;
-        let currentLoggedInUser = null; // <- BARU: Menyimpan data user yang login
-
-        // === FUNGSI UTAMA: MENGAMBIL SEMUA DATA DARI FIRESTORE ===
+        // === FUNGSI UTAMA & NAVIGASI ===
         window.onload = function() {
-            // Kita butuh Auth dan DB siap sebelum init
-            if (window.auth && window.db) {
-                initDB();
-            } else {
-                // Beri waktu sedikit agar <script type="module"> selesai loading
-                setTimeout(initDB, 1000);
-            }
+            // 1. Tampilkan loading
+            showMessage('Memuat data dari server...', true, 99999);
+            
+            // 2. Ambil semua data dari "Jembatan Super" (Apps Script)
+            fetch(URL_JEMBATAN_SUPER)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        // 3. Isi database lokal dengan data dari server
+                        db_users = data.db_users || [];
+                        db_daily_links = data.db_daily_links || [];
+                        db_done_reports = data.db_done_reports || [];
+                        
+                        // 4. Lanjutkan proses seperti biasa
+                        db_users.sort((a, b) => a.noUrut - b.noUrut);
+                        
+                        populateAllLists();
+                        populateNoUrutOptions(); 
+                        renderAdminDashboard();
+                        
+                        checkTimeGating();
+                        setInterval(checkTimeGating, 30000);
+                        showPage('tahap1Container'); // Tampilkan halaman default
+                        
+                        showMessage('Data berhasil dimuat!', true, 2000); // Hilangkan loading
+                    } else {
+                        showMessage('Gagal memuat data dari database. Cek GSheet/Apps Script.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error);
+                    showMessage('Gagal terhubung ke server. Cek koneksi internet Kakak.');
+                });
         };
-
-        async function initDB() {
-            if (!window.db || !window.Fns) {
-                showMessage('Firebase belum terinisialisasi. Cek koneksi atau skrip.', false);
-                return;
-            }
-
-            showMessage('Memuat data dari Cloud Firestore...', true, 99999);
-            
-            try {
-                const { collection, getDocs } = window.Fns;
-                const db = window.db;
-                
-                // 1. Ambil data users
-                const usersSnapshot = await getDocs(collection(db, USERS_COLLECTION)); 
-                db_users = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-                // 2. Ambil data daily_links
-                const linksSnapshot = await getDocs(collection(db, DAILY_LINKS_COLLECTION));
-                db_daily_links = linksSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                
-                // 3. Ambil data done_reports
-                const reportsSnapshot = await getDocs(collection(db, DONE_REPORTS_COLLECTION));
-                db_done_reports = reportsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-                // 4. Lanjutkan proses aplikasi
-                db_users.sort((a, b) => a.noUrut - b.noUrut);
-                
-                populateAllLists(); // Tetap isi list untuk dropdown (meskipun kita auto-fill)
-                populateNoUrutOptions(); 
-                
-                checkTimeGating();
-                setInterval(checkTimeGating, 30000);
-                
-                // PERUBAHAN: Tampilkan halaman LOGIN dulu
-                showPage('tahapLoginContainer'); 
-                
-                showMessage('Data berhasil dimuat dari Firestore!', true, 2000); 
-
-            } catch (error) {
-                console.error('Firestore Fetch Error:', error);
-                // INI PENTING: Jika error karena "Missing or insufficient permissions"
-                // itu artinya Rules Anda bekerja, tapi Anda belum login!
-                if (error.code === 'permission-denied') {
-                    showMessage('Aplikasi Aman. Silakan Login untuk melanjutkan.', true, 4000);
-                    showPage('tahapLoginContainer');
-                } else {
-                    showMessage('Gagal memuat data. Cek konsol browser!', false);
-                }
-            }
-        }
-
-        // === LOGIKA LOGIN BARU (DENGAN FIREBASE AUTH) ===
-        document.getElementById('formTahapLogin').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const submitButton = this.querySelector('button[type="submit"]');
-
-            showMessage('Mencoba Masuk...', true, 99999);
-            submitButton.disabled = true;
-            submitButton.textContent = 'MOHON TUNGGU...';
-
-            try {
-                const { signInWithEmailAndPassword } = window.Fns;
-                const auth = window.auth;
-
-                // 1. Verifikasi ke Firebase Auth
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const firebaseUser = userCredential.user;
-
-                // 2. Ambil data user dari database lokal (db_users)
-                // Kita pakai idAuth (UID) untuk mencocokkan
-                const user = db_users.find(u => u.idAuth === firebaseUser.uid); 
-                
-                if (!user) {
-                    // Jika user ada di Auth tapi tidak ada di Firestore (jarang terjadi)
-                    throw new Error('Data user tidak ditemukan di database. Hubungi Admin.');
-                }
-
-                currentLoggedInUser = user; // <- PENTING: Simpan data user yang login
-                showMessage(`Selamat datang kembali, Kak ${user.nama}! Silakan lanjut.`, true, 5000);
-                document.getElementById('formTahapLogin').reset();
-                showPage('tahap1Container'); // Langsung ke tahap 1
-
-            } catch (error) {
-                console.error('Firebase Auth Error (Login):', error);
-                let msg = 'Login Gagal. Cek email dan password Anda.';
-                if (error.code === 'auth/invalid-email' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                    msg = 'Email tidak terdaftar atau format salah.';
-                } else if (error.code === 'auth/wrong-password') {
-                    msg = 'Password salah.';
-                }
-                showMessage(msg, false);
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'MASUK SEKARANG';
-            }
-        });
-
-        // === FUNGSI SHOWPAGE (DIMODIFIKASI UNTUK CEK LOGIN) ===
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            
-            // --- PENGECEKAN LOGIN BARU ---
-            const securePages = ['tahap1Container', 'tahap2Container', 'tahapIzinContainer'];
-            if (securePages.includes(pageId) && !currentLoggedInUser) {
-                showMessage('Maaf, Kakak harus Login terlebih dahulu!', false);
-                document.getElementById('tahapLoginContainer').classList.add('active'); // Paksa kembali ke login
-                return;
-            }
-            // ----------------------------
-            
-            document.getElementById(pageId).classList.add('active');
-            
-            if (pageId === 'tahap3Container') {
-                if (!isAdminLoggedIn) {
-                    openAdminPrompt(); 
-                    return;
-                }
-                renderAdminDashboard();
-            }
-            
-            // --- OTOMATIS ISI IDENTITAS JIKA SUDAH LOGIN ---
-            if (currentLoggedInUser) {
-                const userText = `[${currentLoggedInUser.noUrut}] ${currentLoggedInUser.nama} (@${currentLoggedInUser.username})`;
-                
-                if (pageId === 'tahap1Container') {
-                    document.getElementById('searchIdentitas1').value = userText;
-                    // Pastikan radio button (tersembunyi) juga ter-check
-                    const radio = document.getElementById(`t1_${currentLoggedInUser.username}`);
-                    if(radio) radio.checked = true;
-                }
-                if (pageId === 'tahap2Container') {
-                    document.getElementById('searchIdentitas2').value = userText;
-                    const radio = document.getElementById(`t2_${currentLoggedInUser.username}`);
-                    if(radio) radio.checked = true;
-                    updateModalButtonStatus();
-                }
-                if (pageId === 'tahapIzinContainer') {
-                    document.getElementById('searchIdentitasIzin').value = userText;
-                    const radio = document.getElementById(`tIzin_${currentLoggedInUser.username}`);
-                    if(radio) radio.checked = true;
-                }
-            }
-        }
         
-        // === TAHAP 0: LOGIKA REGISTRASI (DENGAN FIREBASE AUTH) ===
-        document.getElementById('formTahap0').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const noUrut = document.getElementById('regNoUrut').value;
-            const nama = document.getElementById('regNama').value.trim();
-            const email = document.getElementById('regEmail').value.trim(); // <- BARU
-            const password = document.getElementById('regPassword').value.trim(); // <- BARU
-            const username = document.getElementById('regUsername').value.trim().toLowerCase();
-            const tier = document.getElementById('regTier').value;
-            const submitButton = this.querySelector('button[type="submit"]');
-
-            // ... (Validasi lainnya)
-            if (db_users.some(u => u.username === username)) {
-                return showMessage('Username sudah terdaftar. Coba yang lain.');
-            }
-            
-            showMessage('Mendaftarkan...', true, 99999);
-            submitButton.disabled = true;
-            submitButton.textContent = 'MOHON TUNGGU...';
-
-            try {
-                const { addDoc, collection, createUserWithEmailAndPassword } = window.Fns;
-                const db = window.db;
-                const auth = window.auth;
-
-                // LANGKAH 1: Buat user di Firebase AUTH (Menyimpan email & password dgn aman)
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const firebaseUser = userCredential.user; // Ini adalah user dari Auth
-
-                // LANGKAH 2: Simpan data non-sensitif di Firestore
-                const newUserData = {
-                    idAuth: firebaseUser.uid, // <- PENTING: ID Unik dari Auth
-                    noUrut: parseInt(noUrut),
-                    nama: nama,
-                    username: username,
-                    email: email, // Simpan email di Firestore juga
-                    tier: parseInt(tier),
-                    sanksi: 0, 
-                    joinDate: new Date().toISOString()
-                    // TIDAK ADA PASSWORD DISIMPAN DI SINI
-                };
-
-                // Menulis data ke koleksi 'users'
-                const docRef = await addDoc(collection(db, USERS_COLLECTION), newUserData); 
-
-                // Jika BERHASIL
-                showMessage('Registrasi BERHASIL! Silakan lanjut ke Halaman Login.', true, 5000);
-                document.getElementById('formTahap0').reset();
-                
-                // Tambahkan user baru ke data lokal
-                const newUser = { id: docRef.id, ...newUserData };
-                db_users.push(newUser);
-                db_users.sort((a, b) => a.noUrut - b.noUrut);
-                populateAllLists(); 
-                populateNoUrutOptions(); 
-                
-                showPage('tahapLoginContainer'); // Arahkan ke Login
-
-            } catch (error) {
-                console.error('Firebase Auth/Firestore Error (Registrasi):', error);
-                let msg = 'Gagal Registrasi. Coba lagi.';
-                if (error.code === 'auth/email-already-in-use') {
-                    msg = 'Email sudah terdaftar. Coba email lain.';
-                } else if (error.code === 'auth/weak-password') {
-                    msg = 'Password terlalu lemah (min. 6 karakter).';
-                }
-                showMessage(msg, false);
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'REGISTRASI SEKARANG';
-            }
-        });
-        
-        // === TAHAP 1, 2, 2.5 (PENYESUAIAN SEDERHANA) ===
-        // Kita tidak lagi perlu mencari 'identitas' dari radio button,
-        // karena kita sudah tahu siapa yang login dari 'currentLoggedInUser'
-        
-        document.getElementById('formTahap1').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            // PERUBAHAN: Ambil identitas dari user yang login
-            if (!currentLoggedInUser) return showMessage('Sesi login berakhir. Harap login ulang.', false);
-            
-            const identitas = currentLoggedInUser.username;
-            const link = document.getElementById('daftarLink').value;
-            const submitButton = this.querySelector('button[type="submit"]');
-
-            if (db_daily_links.some(l => l.username === identitas)) {
-                return showMessage('Kakak sudah mendaftarkan link hari ini.', false);
-            }
-
-            // ... (sisa try/catch/finally sama persis)
-            showMessage('Mendaftarkan link...', true, 99999);
-            submitButton.disabled = true;
-            submitButton.textContent = 'MOHON TUNGGU...';
-            
-            try {
-                const { addDoc, collection } = window.Fns;
-                const db = window.db;
-                const newLinkData = {
-                    username: identitas,
-                    link: link,
-                    timestamp: new Date().toISOString(),
-                };
-                const docRef = await addDoc(collection(db, DAILY_LINKS_COLLECTION), newLinkData); 
-                showMessage('BERHASIL Mendaftar! Link Kakak akan di-support.', true, 5000);
-                document.getElementById('formTahap1').reset();
-                // Kita harus mengisi ulang input readonly setelah reset
-                document.getElementById('searchIdentitas1').value = `[${currentLoggedInUser.noUrut}] ${currentLoggedInUser.nama} (@${currentLoggedInUser.username})`;
-                
-                const newLink = { id: docRef.id, ...newLinkData };
-                db_daily_links.push(newLink);
-                updateModalButtonStatus(); 
-            } catch (error) {
-                console.error('Firestore Write Error (Daftar):', error);
-                showMessage('Gagal mendaftar. Cek konsol browser atau Security Rules.', false);
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'DAFTAR SUPPORT SEKARANG';
-            }
-        });
-
-        document.getElementById('formTahap2').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            // PERUBAHAN: Ambil identitas dari user yang login
-            if (!currentLoggedInUser) return showMessage('Sesi login berakhir. Harap login ulang.', false);
-            
-            const identitas = currentLoggedInUser.username;
-            const totalTargetsDone = parseInt(document.getElementById('hiddenTargetsDone').value);
-            const buktiLink = document.getElementById('buktiLink').value.trim(); 
-            const submitButton = this.querySelector('button[type="submit"]');
-
-            const user = currentLoggedInUser;
-            // ... (sisa validasi sama persis)
-            const userTier = user.tier;
-            let availableTargetsCount = 0;
-            db_daily_links.forEach(item => {
-                const targetUser = db_users.find(u => u.username === item.username);
-                if (targetUser && targetUser.tier === userTier && targetUser.username !== user.username) {
-                    availableTargetsCount++;
-                }
-            });
-            if (availableTargetsCount > 0 && totalTargetsDone === 0) {
-                return showMessage('Kakak wajib memilih target yang sudah selesai via tombol "Pilih Target Selesai".');
-            }
-            if (totalTargetsDone < availableTargetsCount) {
-                return showMessage(`Kakak baru memilih ${totalTargetsDone} target. Harap centang SEMUA ${availableTargetsCount} teman satu grup (Grup ${userTier}) yang terdaftar hari ini.`);
-            }
-            if (!buktiLink) return showMessage('Kakak wajib setor 1 link bukti komentar.');
-            try { new URL(buktiLink); } catch (_) {
-                return showMessage('Link bukti yang Kakak masukkan tidak valid.');
-            }
-            if (!document.getElementById('janji1').checked || !document.getElementById('janji2').checked || !document.getElementById('janji3').checked) {
-                return showMessage('Kakak wajib mencentang SEMUA 3 Janji Amanah.');
-            }
-            if (db_done_reports.some(r => r.username === identitas)) {
-                return showMessage('Kakak sudah submit laporan (Done/Izin/Sakit) hari ini.');
-            }
-            const targetsChecked = Array.from(document.querySelectorAll('input[name="modalTarget"]:checked')).map(cb => cb.value);
-            
-            // ... (sisa try/catch/finally sama persis)
-            showMessage('Mengirim laporan...', true, 99999);
-            submitButton.disabled = true;
-            submitButton.textContent = 'MOHON TUNGGU...';
-
-            try {
-                const { addDoc, collection } = window.Fns;
-                const db = window.db;
-                const newReportData = {
-                    username: identitas,
-                    status: 'done', 
-                    buktiLink: buktiLink,
-                    targets: targetsChecked, 
-                    timestamp: new Date().toISOString(),
-                };
-                const docRef = await addDoc(collection(db, DONE_REPORTS_COLLECTION), newReportData); 
-                showMessage('BERHASIL! Kakak AMANAH hari ini. Jazakillah khair.', true, 5000);
-                document.getElementById('formTahap2').reset();
-                document.getElementById('searchIdentitas2').value = `[${currentLoggedInUser.noUrut}] ${currentLoggedInUser.nama} (@${currentLoggedInUser.username})`;
-                
-                const newReport = { id: docRef.id, ...newReportData };
-                db_done_reports.push(newReport);
-                updateModalButtonStatus(); 
-            } catch (error) {
-                console.error('Firestore Write Error (Absen Done):', error);
-                showMessage('Gagal mengirim laporan. Cek konsol browser atau Security Rules.', false);
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'SUBMIT ABSENSI AMANAH';
-            }
-        });
-
-        document.getElementById('formTahapIzin').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            // PERUBAHAN: Ambil identitas dari user yang login
-            if (!currentLoggedInUser) return showMessage('Sesi login berakhir. Harap login ulang.', false);
-            
-            const identitas = currentLoggedInUser.username;
-            const keterangan = document.getElementById('izinKeterangan').value.trim();
-            const status = e.submitter.dataset.status;
-            // ... (sisa validasi sama persis)
-            
-            if (!keterangan) return showMessage('Keterangan wajib diisi (cth: Sakit, Pulkam, dll).');
-            if (db_done_reports.some(r => r.username === identitas)) {
-                return showMessage('Kakak sudah submit laporan (Done/Izin/Sakit) hari ini.');
-            }
-            
-            // ... (sisa try/catch/finally sama persis)
-            const submitButton = e.submitter;
-            const otherButton = status === 'izin' ? this.querySelector('button[data-status="sakit"]') : this.querySelector('button[data-status="izin"]');
-            showMessage('Mengirim laporan...', true, 99999);
-            submitButton.disabled = true;
-            otherButton.disabled = true;
-            submitButton.textContent = 'MOHON TUNGGU...';
-            
-            try {
-                const { addDoc, collection } = window.Fns;
-                const db = window.db;
-                const newReportData = {
-                    username: identitas,
-                    status: status,
-                    keterangan: keterangan,
-                    targets: [],
-                    timestamp: new Date().toISOString(),
-                };
-                const docRef = await addDoc(collection(db, DONE_REPORTS_COLLECTION), newReportData); 
-                const pesanStatus = status === 'izin' ? 'IZIN' : 'SAKIT';
-                showMessage(`Laporan ${pesanStatus} BERHASIL DISIMPAN.`, true, 5000);
-                document.getElementById('formTahapIzin').reset();
-                document.getElementById('searchIdentitasIzin').value = `[${currentLoggedInUser.noUrut}] ${currentLoggedInUser.nama} (@${currentLoggedInUser.username})`;
-                
-                const newReport = { id: docRef.id, ...newReportData };
-                db_done_reports.push(newReport);
-            } catch (error) {
-                console.error('Firestore Write Error (Izin/Sakit):', error);
-                showMessage('Gagal mengirim laporan. Cek konsol browser atau Security Rules.', false);
-            } finally {
-                submitButton.disabled = false;
-                otherButton.disabled = false;
-                submitButton.textContent = status === 'izin' ? 'SUBMIT IZIN 📝' : 'SUBMIT SAKIT 🤒';
-            }
-        });
-
-        
-        // ===================================================================
-        // SISA FUNGSI (Helper, Admin, Modal) TETAP SAMA
-        // ===================================================================
-
+        // === LOGIKA PASSWORD ADMIN ===
         function openAdminPrompt() {
             document.getElementById('adminPasswordInput').value = ''; 
             document.getElementById('adminPassError').style.display = 'none'; 
@@ -738,13 +371,58 @@
         function checkAdminPassword() {
             const passInput = document.getElementById('adminPasswordInput');
             const errorMsg = document.getElementById('adminPassError');
-            if (passInput.value === window.SUPER_SECRET_PASSWORD) {
-                closeAdminPrompt(); 
-                isAdminLoggedIn = true;
-                showPage('tahap3Container'); 
-            } else {
-                errorMsg.style.display = 'block'; 
-                passInput.focus();
+            const passButton = document.querySelector('#modalAdminPassword button:last-child');
+            
+            const originalButtonText = passButton.textContent;
+            passButton.disabled = true;
+            passButton.textContent = 'Mengecek...';
+
+            // Validasi SISI KLIEN (Cepat)
+            if (passInput.value !== SUPER_SECRET_PASSWORD) {
+                 errorMsg.style.display = 'block';
+                 passButton.disabled = false;
+                 passButton.textContent = originalButtonText;
+                 passInput.focus();
+                 return;
+            }
+
+            // Validasi SISI SERVER (Aman)
+            const formData = new FormData();
+            formData.append('action', 'checkAdmin'); 
+            formData.append('password', passInput.value);
+
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    closeAdminPrompt(); 
+                    showPage('tahap3Container'); 
+                } else {
+                    errorMsg.style.display = 'block'; 
+                    passInput.focus();
+                }
+            })
+            .catch(error => {
+                showMessage('Gagal validasi admin. Cek koneksi.');
+            })
+            .finally(() => {
+                 passButton.disabled = false;
+                 passButton.textContent = originalButtonText;
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'tahap3Container') {
+                renderAdminDashboard();
+            }
+            if (pageId === 'tahap2Container') {
+                updateModalButtonStatus();
             }
         }
 
@@ -755,15 +433,15 @@
             messageBox.classList.add('active');
             
             if (message.includes('DETAIL ABSENSI') || duration > 9999) {
-                messageBox.classList.remove('text-center');
-                messageBox.classList.add('text-left', 'font-mono', 'text-sm', 'whitespace-pre-line', 'bg-blue-50', 'text-blue-800');
-                if (!messageBox.querySelector('button')) {
+                 messageBox.classList.remove('text-center');
+                 messageBox.classList.add('text-left', 'font-mono', 'text-sm', 'whitespace-pre-line', 'bg-blue-50', 'text-blue-800');
+                 if (!messageBox.querySelector('button')) {
                     const closeBtn = document.createElement('button');
                     closeBtn.innerText = 'Tutup Detail';
                     closeBtn.className = 'mt-4 w-full bg-blue-600 text-white p-2 rounded-lg';
                     closeBtn.onclick = () => messageBox.classList.remove('active');
                     messageBox.appendChild(closeBtn);
-                }
+                 }
             } else {
                 setTimeout(() => {
                     messageBox.classList.remove('active');
@@ -771,6 +449,7 @@
             }
         }
 
+        // === LOGIKA BATAS WAKTU (Time-Gating) ===
         function getWIBTime() {
             const now = new Date();
             const utcHours = now.getUTCHours();
@@ -782,40 +461,45 @@
         function checkTimeGating() {
             const { hours, minutes } = getWIBTime();
             const currentTime = hours + (minutes / 60); 
+
+            // TAHAP 1: Aktif 08.00 - 15.00
             const isTahap1Active = (currentTime >= 8 && currentTime < 15);
+            // TAHAP 2: Aktif 15.30 - 07.30
             const isTahap2Active = (currentTime >= 15.5 || currentTime < 7.5);
+
             document.getElementById('submitTahap1').disabled = !isTahap1Active;
             document.getElementById('timeMessage1').classList.toggle('active', !isTahap1Active);
+
             document.getElementById('submitTahap2').disabled = !isTahap2Active;
             document.getElementById('btnPilihTarget').disabled = !isTahap2Active;
             document.getElementById('timeMessage2').classList.toggle('active', !isTahap2Active);
         }
 
+        // === FUNGSI DROPDOWN PENCARIAN ===
         function showList(containerId) {
             document.getElementById(containerId).classList.add('active');
         }
-
+        
         function hideList(containerId) {
             setTimeout(() => {
                 document.getElementById(containerId).classList.remove('active');
             }, 150);
         }
-
+        
         function selectSearchItem(inputId, listId, text, radioId) {
-            // Fungsi ini tidak lagi digunakan untuk input utama, tapi tetap dipakai oleh admin/modal
             document.getElementById(inputId).value = text; 
             document.getElementById(radioId).checked = true; 
             document.getElementById(inputId).parentNode.classList.remove('active');
         }
-
+        
         function filterList(inputId, listId) {
-            // Fungsi ini masih dipakai untuk Modal dan Admin
             const container = document.getElementById(inputId).parentNode;
             container.classList.add('active');
             
             const filter = document.getElementById(inputId).value.toLowerCase();
             const list = document.getElementById(listId);
             const items = list.getElementsByTagName('label');
+
             for (let i = 0; i < items.length; i++) {
                 const span = items[i].querySelector('span'); 
                 if (span) {
@@ -829,10 +513,13 @@
             }
         }
 
+        // === TAHAP 0: LOGIKA REGISTRASI ===
         function populateNoUrutOptions() {
             const selectNoUrut = document.getElementById('regNoUrut');
             selectNoUrut.innerHTML = '<option value="">Pilih No. Urut (Tersedia)</option>'; 
+            
             const takenNos = db_users.map(u => parseInt(u.noUrut));
+            
             for (let i = 1; i <= 100; i++) {
                 if (!takenNos.includes(i)) {
                     const option = document.createElement('option');
@@ -843,16 +530,82 @@
             }
         }
 
+        document.getElementById('formTahap0').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const noUrut = document.getElementById('regNoUrut').value;
+            const nama = document.getElementById('regNama').value.trim();
+            const username = document.getElementById('regUsername').value.trim().toLowerCase();
+            const tier = document.getElementById('regTier').value;
+            const submitButton = this.querySelector('button[type="submit"]');
+
+            if (!noUrut) return showMessage('Kakak wajib memilih No. Urut yang tersedia.');
+            if (!nama || !username) return showMessage('Nama dan Username wajib diisi.');
+            if (!tier) return showMessage('Kakak wajib memilih Opsi Support Harian.');
+            if (!document.getElementById('regSyarat1').checked || 
+                !document.getElementById('regSyarat2').checked || 
+                !document.getElementById('regSyarat3').checked || 
+                !document.getElementById('regSyarat4').checked) {
+                return showMessage('Kakak wajib mencentang SEMUA 4 Syarat Wajib Registrasi.');
+            }
+
+            const formData = new FormData();
+            formData.append('action', 'register'); 
+            formData.append('noUrut', noUrut);
+            formData.append('nama', nama);
+            formData.append('username', username);
+            formData.append('tier', tier);
+            
+            showMessage('Mendaftarkan...', true, 99999);
+            submitButton.disabled = true;
+            submitButton.textContent = 'MOHON TUNGGU...';
+
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    showMessage('Registrasi BERHASIL! Silakan lanjut ke Tahap 1.', true, 5000);
+                    document.getElementById('formTahap0').reset();
+                    
+                    const newUser = { noUrut: parseInt(noUrut), nama: nama, username: username, tier: parseInt(tier) };
+                    db_users.push(newUser);
+                    db_users.sort((a, b) => a.noUrut - b.noUrut);
+                    
+                    populateAllLists(); 
+                    populateNoUrutOptions(); 
+                    
+                    showPage('tahap1Container'); 
+                
+                } else {
+                    showMessage(data.message); 
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Gagal terhubung ke server. Cek koneksi internet Kakak.');
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'REGISTRASI SEKARANG';
+            });
+        });
+        
         function escapeHTML(str) {
             if (!str) return '';
             return str.replace(/[&<>"']/g, function(m) {
                 return {
-                    '&': '&amp;', '<': '&lt;', '>': '&gt;',
-                    '"': '&quot;', "'": '&#039;'
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
                 }[m];
             });
         }
-
+        
         function populateAllLists() {
             const list1 = document.getElementById('listIdentitas1');
             const list2 = document.getElementById('listIdentitas2');
@@ -870,32 +623,84 @@
                 const escapedText = escapeHTML(text);
                 const itemHtml = `<span class="font-medium text-gray-800">${text}</span>`;
                 
-                // Kita tetap buat radio button ini, agar saat di-klik otomatis, JS bisa menemukannya
                 const item1 = document.createElement('label');
                 item1.className = 'list-item';
                 item1.htmlFor = id1;
                 item1.innerHTML = `<input type="radio" id="${id1}" name="identitas1" value="${user.username}"> ${itemHtml}`;
+                item1.setAttribute('onmousedown', `selectSearchItem('searchIdentitas1', 'listIdentitas1', '${escapedText}', '${id1}')`);
                 list1.appendChild(item1);
 
                 const item2 = document.createElement('label');
                 item2.className = 'list-item';
                 item2.htmlFor = id2;
                 item2.innerHTML = `<input type="radio" id="${id2}" name="identitas2" value="${user.username}"> ${itemHtml}`;
+                item2.setAttribute('onmousedown', `selectSearchItem('searchIdentitas2', 'listIdentitas2', '${escapedText}', '${id2}')`);
                 list2.appendChild(item2);
 
                 const itemIzin = document.createElement('label');
                 itemIzin.className = 'list-item';
                 itemIzin.htmlFor = idIzin;
                 itemIzin.innerHTML = `<input type="radio" id="${idIzin}" name="identitasIzin" value="${user.username}"> ${itemHtml}`;
+                itemIzin.setAttribute('onmousedown', `selectSearchItem('searchIdentitasIzin', 'listIdentitasIzin', '${escapedText}', '${idIzin}')`);
                 listIzin.appendChild(itemIzin);
             });
         }
-        
-        function openModal() {
-            // PERUBAHAN: Identitas diambil dari user yang login
-            if (!currentLoggedInUser) return showMessage('Sesi login berakhir. Harap login ulang.', false);
+
+        // === TAHAP 1: LOGIKA PENDAFTARAN HARIAN ===
+        document.getElementById('formTahap1').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const identitas = document.querySelector('input[name="identitas1"]:checked');
+            const link = document.getElementById('daftarLink').value;
+            const submitButton = this.querySelector('button[type="submit"]');
+
+            if (!identitas) return showMessage('Pilih Identitas Pendaftar dulu Kak.');
             
-            const currentUser = currentLoggedInUser;
+            const formData = new FormData();
+            formData.append('action', 'daftar'); 
+            formData.append('username', identitas.value);
+            formData.append('link', link);
+
+            showMessage('Mendaftarkan link...', true, 99999);
+            submitButton.disabled = true;
+            submitButton.textContent = 'MOHON TUNGGU...';
+            
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                 if (data.result === 'success') {
+                    showMessage('BERHASIL Mendaftar! Link Kakak akan di-support.', true, 5000);
+                    document.getElementById('formTahap1').reset();
+                    document.getElementById('searchIdentitas1').value = ''; 
+                    
+                    db_daily_links.push({ username: identitas.value, link: link });
+                    updateModalButtonStatus(); 
+                 } else {
+                    showMessage(data.message); 
+                 }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Gagal mendaftar. Cek koneksi internet Kakak.');
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'DAFTAR SUPPORT SEKARANG';
+            });
+        });
+        
+        // === TAHAP 2: LOGIKA ABSENSI DONE & MODAL ===
+        function openModal() {
+            const identitasAbsen = document.querySelector('input[name="identitas2"]:checked');
+            if (!identitasAbsen) {
+                return showMessage('Pilih dulu "Identitas Pengabsen" (nama Kakak) sebelum memilih target.');
+            }
+            const currentUser = db_users.find(u => u.username === identitasAbsen.value);
+            if (!currentUser) {
+                return showMessage('Data Kakak tidak ditemukan. Harap registrasi ulang di Tahap 0.');
+            }
             const userTier = currentUser.tier;
 
             const listModalTarget = document.getElementById('listModalTarget');
@@ -933,7 +738,7 @@
             }
             document.getElementById('modalPopup').classList.remove('active');
         }
-
+        
         function updateModalButtonStatus() {
             const totalDaftar = db_daily_links.length;
             const btn = document.getElementById('btnPilihTarget');
@@ -947,7 +752,151 @@
             btn.classList.remove('border-green-500', 'text-green-700', 'font-bold');
             document.getElementById('hiddenTargetsDone').value = '0';
         }
+
+        document.getElementById('formTahap2').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const identitas = document.querySelector('input[name="identitas2"]:checked');
+            const totalTargetsDone = parseInt(document.getElementById('hiddenTargetsDone').value);
+            const buktiLink = document.getElementById('buktiLink').value.trim(); 
+            const submitButton = this.querySelector('button[type="submit"]');
+
+            if (!identitas) return showMessage('Pilih Identitas Pengabsen dulu Kak.');
+
+            const user = db_users.find(u => u.username === identitas.value);
+            const userTier = user.tier;
+            
+            let availableTargetsCount = 0;
+            db_daily_links.forEach(item => {
+                const targetUser = db_users.find(u => u.username === item.username);
+                if (targetUser && targetUser.tier === userTier && targetUser.username !== user.username) {
+                    availableTargetsCount++;
+                }
+            });
+            
+            if (availableTargetsCount > 0 && totalTargetsDone === 0) {
+                return showMessage('Kakak wajib memilih target yang sudah selesai via tombol "Pilih Target Selesai".');
+            }
+            if (totalTargetsDone < availableTargetsCount) {
+                return showMessage(`Kakak baru memilih ${totalTargetsDone} target. Harap centang SEMUA ${availableTargetsCount} teman satu grup (Grup ${userTier}) yang terdaftar hari ini.`);
+            }
+            if (!buktiLink) return showMessage('Kakak wajib setor 1 link bukti komentar.');
+            try { new URL(buktiLink); } catch (_) {
+                return showMessage('Link bukti yang Kakak masukkan tidak valid.');
+            }
+
+            if (!document.getElementById('janji1').checked || !document.getElementById('janji2').checked || !document.getElementById('janji3').checked) {
+                return showMessage('Kakak wajib mencentang SEMUA 3 Janji Amanah.');
+            }
+            if (db_done_reports.some(r => r.username === identitas.value)) {
+                return showMessage('Kakak sudah submit laporan (Done/Izin/Sakit) hari ini.');
+            }
+
+            const targetsChecked = Array.from(document.querySelectorAll('input[name="modalTarget"]:checked')).map(cb => cb.value);
+            
+            const formData = new FormData();
+            formData.append('action', 'absen'); 
+            formData.append('username', identitas.value);
+            formData.append('buktiLink', buktiLink);
+            formData.append('targets', targetsChecked.join(', ')); // Kirim daftar nama dipisah koma ke GSheet
+            
+            showMessage('Mengirim laporan...', true, 99999);
+            submitButton.disabled = true;
+            submitButton.textContent = 'MOHON TUNGGU...';
+
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    showMessage('BERHASIL! Kakak AMANAH hari ini. Jazakillah khair.', true, 5000);
+                    document.getElementById('formTahap2').reset();
+                    document.getElementById('searchIdentitas2').value = '';
+                    
+                    db_done_reports.push({ 
+                        username: identitas.value, 
+                        status: 'done', 
+                        timestamp: new Date().toISOString(),
+                        targets: targetsChecked.join(', '), 
+                        buktiLink: buktiLink 
+                    });
+                    updateModalButtonStatus(); 
+                } else {
+                    showMessage(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Gagal mengirim laporan. Cek koneksi internet Kakak.');
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'SUBMIT ABSENSI AMANAH';
+            });
+        });
         
+        // === TAHAP 2.5: LOGIKA IZIN/SAKIT ===
+        document.getElementById('formTahapIzin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const identitas = document.querySelector('input[name="identitasIzin"]:checked');
+            const keterangan = document.getElementById('izinKeterangan').value.trim();
+            const status = e.submitter.dataset.status;
+            const submitButton = e.submitter;
+            const otherButton = status === 'izin' ? this.querySelector('button[data-status="sakit"]') : this.querySelector('button[data-status="izin"]');
+
+            if (!identitas) return showMessage('Pilih Identitas Pelapor dulu Kak.');
+            if (!keterangan) return showMessage('Keterangan wajib diisi (cth: Sakit, Pulkam, dll).');
+            if (db_done_reports.some(r => r.username === identitas.value)) {
+                return showMessage('Kakak sudah submit laporan (Done/Izin/Sakit) hari ini.');
+            }
+            
+            const formData = new FormData();
+            formData.append('action', 'izin'); 
+            formData.append('username', identitas.value);
+            formData.append('keterangan', keterangan);
+            formData.append('status', status);
+
+            showMessage('Mengirim laporan...', true, 99999);
+            submitButton.disabled = true;
+            otherButton.disabled = true;
+            submitButton.textContent = 'MOHON TUNGGU...';
+            
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    const pesanStatus = status === 'izin' ? 'IZIN' : 'SAKIT';
+                    showMessage(`Laporan ${pesanStatus} BERHASIL DISIMPAN.`, true, 5000);
+                    document.getElementById('formTahapIzin').reset();
+                    document.getElementById('searchIdentitasIzin').value = '';
+                    
+                    db_done_reports.push({
+                        username: identitas.value,
+                        status: status,
+                        timestamp: new Date().toISOString(),
+                        targets: [],
+                        keterangan: keterangan
+                    });
+                } else {
+                    showMessage(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Gagal mengirim laporan. Cek koneksi internet Kakak.');
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                otherButton.disabled = false;
+                submitButton.textContent = status === 'izin' ? 'SUBMIT IZIN 📝' : 'SUBMIT SAKIT 🤒';
+            });
+        });
+
+        // === TAHAP 3: LOGIKA ADMIN ===
         function renderAdminDashboard() {
             const listInternal = document.getElementById('adminLaporanInternal');
             const listGrup = document.getElementById('adminLaporanGrup');
@@ -973,13 +922,24 @@
 
                 switch(status) {
                     case 'done':
-                        statusIcon = '✅'; statusText = `Amanah (Done) @ ${waktuLapor}`; bgColor = 'bg-green-50'; break;
+                        statusIcon = '✅';
+                        statusText = `Amanah (Done) @ ${waktuLapor}`;
+                        bgColor = 'bg-green-50';
+                        break;
                     case 'izin':
-                        statusIcon = '📝'; statusText = `Izin @ ${waktuLapor}`; bgColor = 'bg-blue-50'; break;
+                        statusIcon = '📝';
+                        statusText = `Izin @ ${waktuLapor}`;
+                        bgColor = 'bg-blue-50';
+                        break;
                     case 'sakit':
-                        statusIcon = '🤒'; statusText = `Sakit @ ${waktuLapor}`; bgColor = 'bg-yellow-50'; break;
+                        statusIcon = '🤒';
+                        statusText = `Sakit @ ${waktuLapor}`;
+                        bgColor = 'bg-yellow-50';
+                        break;
                     default: // 'belum'
-                        statusIcon = '❌'; statusText = 'Belum Lapor'; bgColor = 'bg-red-50';
+                        statusIcon = '❌';
+                        statusText = 'Belum Lapor';
+                        bgColor = 'bg-red-50';
                 }
                 
                 const statusDaftar = sudahDaftar ? `✅ Daftar (Grup ${user.tier})` : '❌ Daftar';
@@ -1038,7 +998,7 @@
             
             listGrup.innerText = fullReportText;
         }
-
+        
         function investigasi(username) {
             const report = db_done_reports.find(r => r.username === username);
             if (!report) {
@@ -1064,7 +1024,7 @@
             
             showMessage(message, true, 999999);
         }
-
+        
         function copyListBelumAbsen() {
             let belumAbsenList = "LIST YANG BELUM ABSEN (MOHON SEGERA JAPRI):\n=====================================\n\n";
             let count = 0;
@@ -1085,12 +1045,12 @@
             
             copyToClipboard(belumAbsenList, 'List yang belum absen berhasil di-copy!');
         }
-
+        
         function copyListToGrup() {
             const textToCopy = document.getElementById('adminLaporanGrup').innerText;
             copyToClipboard(textToCopy, 'List Laporan berhasil di-copy! Siap paste ke WA.');
         }
-
+        
         function copyToClipboard(text, successMessage) {
             const copyHelper = document.getElementById('copyHelper');
             copyHelper.value = text;
@@ -1104,67 +1064,37 @@
                 showMessage('Gagal meng-copy. Silakan copy manual dari box.');
             }
         }
-
-        async function resetHarian() {
-            if (!isAdminLoggedIn) {
-                return showMessage('Akses Ditolak. Silakan login admin dulu.', false);
-            }
-            if (!confirm('PERINGATAN KERAS: Apakah Kakak yakin ingin menghapus SEMUA data harian (Pendaftaran & Laporan Absen) dari Firestore?')) {
+        
+        function resetHarian() {
+            if (!confirm('Apakah Kakak yakin ingin mereset SEMUA data harian (Pendaftaran & Laporan Absen)? Data User tidak akan hilang.')) {
                 return;
             }
+
+            const formData = new FormData();
+            formData.append('action', 'resetHarian');
+
+            showMessage('Mereset data harian di server...', true, 99999);
             
-            showMessage('Mereset data harian di Firestore...', true, 99999);
-            
-            try {
-                const { collection, getDocs, deleteDoc } = window.Fns;
-                const db = window.db;
-
-                // 1. Hapus semua dokumen dari daily_links
-                const linksSnapshot = await getDocs(collection(db, DAILY_LINKS_COLLECTION));
-                const deletePromises = [];
-                linksSnapshot.forEach(doc => {
-                    deletePromises.push(deleteDoc(doc.ref));
-                });
-                
-                // 2. Hapus semua dokumen dari done_reports
-                const reportsSnapshot = await getDocs(collection(db, DONE_REPORTS_COLLECTION));
-                reportsSnapshot.forEach(doc => {
-                    deletePromises.push(deleteDoc(doc.ref));
-                });
-
-                // Tunggu semua proses delete selesai
-                await Promise.all(deletePromises);
-
-                // Reset data lokal dan UI
-                db_daily_links = [];
-                db_done_reports = [];
-                renderAdminDashboard();
-                updateModalButtonStatus(); 
-                showMessage('Data Harian (Tahap 1, 2, 2.5) BERHASIL DIRESET dari Firestore.', true);
-
-            } catch (error) {
-                console.error('Firestore Delete Error:', error);
-                showMessage('Gagal mereset. Cek konsol browser atau Security Rules.', false);
-            }
+            fetch(URL_JEMBATAN_SUPER, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    db_daily_links = [];
+                    db_done_reports = [];
+                    initDB(); 
+                    showMessage('Data Harian (Tahap 1, 2, 2.5) BERHASIL DIRESET.', true);
+                } else {
+                    showMessage(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Gagal mereset. Cek koneksi atau Apps Script.');
+            });
         }
-        
-        // --- BUAT FUNGSI TERSEDIA DI GLOBAL SCOPE (untuk onclick HTML) ---
-        // Ini PENTING agar tombol-tombol HTML bisa memanggil fungsi
-        window.showPage = showPage;
-        window.openAdminPrompt = openAdminPrompt;
-        window.closeAdminPrompt = closeAdminPrompt;
-        window.checkAdminPassword = checkAdminPassword;
-        window.filterList = filterList;
-        window.showList = showList;
-        window.hideList = hideList;
-        window.selectSearchItem = selectSearchItem;
-        window.openModal = openModal;
-        window.closeModal = closeModal;
-        window.renderAdminDashboard = renderAdminDashboard;
-        window.resetHarian = resetHarian;
-        window.investigasi = investigasi;
-        window.copyListBelumAbsen = copyListBelumAbsen;
-        window.copyListToGrup = copyListToGrup;
 
     </script>
 </body>
